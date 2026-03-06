@@ -98,7 +98,7 @@ This means that our class will need to know:
     }
 
 > **Tip:**
-> The movement direction vector must be normalized to avoid the positioning of the clicks to affect speed.
+> The movement direction vector must be normalized to avoid the positioning of the clicks affecting speed.
 
 _*It is also possible to assign the _Rigidbody rb_ field without the editor through script. This can be done with Unity's _Awake_ method, which is fired when the object instance is loading.*_
 
