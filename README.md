@@ -1,2 +1,2 @@
 # GameDevMiniDocs
-Documentation / tutorials for mini snippets of some of my Unity projects.
+Documentation / tutorials for very small and simple code snippets useful for beginner game development projects.
