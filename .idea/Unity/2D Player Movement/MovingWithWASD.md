@@ -1,4 +1,4 @@
-# 2D Player Omnidirectional Movement with keyboard 
+# 2D Player Omnidirectional Movement with Keyboard 
 Simple 2D player movement script (singleplayer)
 
 ## The setup
@@ -33,7 +33,7 @@ Add this as a component to the player object.
 >- _Update_ runs once per frame, so the timestep between the last frame is likely different. This makes it good for obtaining the player' input, as we can always detect any changes to it as soon as they happen, but the varying timesteps can lead to unpredictable physics.
 >
 > 
->- _FixedUpdate_ runs at a fixed timestep. It is perfect for running physics proceses, but it can be slower to detect changes in player input.
+>- _FixedUpdate_ runs at a fixed timestep. It is perfect for running physics processes, but it can be slower to detect changes in player input.
 
 #### For optimal results, we should use _Update_ to detect the player's desired move direction, and use _FixedUpdate_ to move the player object.
 This means that our class will need to know:
@@ -41,20 +41,19 @@ This means that our class will need to know:
 >- The movement speed (customizable)
 >- The movement direction (from user input)
 
-```C#```
-    
+```csharp```
     using UnityEngine;
     
     public class KeyboardMovement : MonoBehaviour {
-    
-    private Vector2 movementDirection;
-    
-    //Set as the Rigidbody2D of the parent player character ([SerializeField] makes private fields customizable in the editor)
-    [SerializeField]
-    private Rigidbody2D rb;
-    
-    //Customize this in the editor
-    public float moveSpeed; 
+        
+        private Vector2 movementDirection;
+        
+        //Set as the Rigidbody2D of the parent player character ([SerializeField] makes private fields customizable in the editor)
+        [SerializeField]
+        private Rigidbody2D rb;
+        
+        //Customize this in the editor
+        public float moveSpeed; 
     
         //Called every frame
         void Update() {
@@ -75,4 +74,12 @@ This means that our class will need to know:
             rb.MovePosition(rb.position + movementDirection * moveSpeed * Time.fixedDeltaTime);
         }  
     }
-**NOTE: The movement direction vector must be normalized, since Input.GetAxisRaw(...) returns either 1, 0, or -1. Moving diagonally gives a vector with a length of up to  1.414 (√2), increasing speed by up to 41% when moving diagonally**
+> **Tip:**
+> The movement direction vector must be normalized, since Input.GetAxisRaw(...) returns either 1, 0, or -1. Moving diagonally gives a vector with a length of up to  1.414 (√2), increasing speed by up to 41% when moving diagonally**
+
+_*It is also possible to assign the _Rigidbody rb_ field without the editor through script. This can be done with Unity's _Awake_ method, which is fired when the object instance is loading.*_
+
+
+    void Awake() {
+        rb = GetComponent<Rigidbody2D>();
+    }
