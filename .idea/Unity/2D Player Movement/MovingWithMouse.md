@@ -72,7 +72,7 @@ This means that our class will need to know:
                 Vector2 deltaPosition = targetPosition - rb.position;
                 
                 //If the distance from the targeted position is very small, stop moving (arbitrary threshold of 0.0025 square magnitude chosen)
-                movementDirection = deltaPosition.sqrMagnitude <= 0.0025 ? 0 : deltaPosition.normalized;
+                movementDirection = deltaPosition.sqrMagnitude <= 0.0025 ? Vector2.zero : deltaPosition.normalized;
                 return;
             }
             //Set the target to the position of our mouse in the world's coordinates (we can get it from the screen coordinates with our camera)
@@ -98,7 +98,7 @@ This means that our class will need to know:
     }
 
 > **Tip:**
-> The movement direction vector must be normalized to avoid the positioning of the clicks affecting speed.
+> The movement direction vector must be normalized to avoid the positioning of the clicks affecting movement speed.
 
 _*It is also possible to assign the _Rigidbody rb_ field without the editor through script. This can be done with Unity's _Awake_ method, which is fired when the object instance is loading.*_
 
